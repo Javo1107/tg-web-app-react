@@ -32,15 +32,28 @@ const ProductList = () => {
             products: addedItems,
             totalPrice: getTotalPrice(addedItems),
             queryId,
-        }
-            fetch('http://localhost:8001/web-data', {
+        };
+    
+        fetch('http://localhost:8001/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
         })
-    }, [addedItems])
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }, [addedItems, queryId]);
 
     useEffect(() => {
         //tg.onEvent('mainButtonClicked', onSendData)
