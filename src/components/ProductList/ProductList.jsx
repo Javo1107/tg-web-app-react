@@ -4,6 +4,8 @@ import ProductItem from "../ProductItem/ProductItem";
 import {useTelegram} from "../../hooks/useTelegram";
 import {useCallback, useEffect} from "react";
 
+import axios from 'axios';
+
 const products = [
     {id: '1', title: 'Jeans', price: 5000, description: 'Color blue, straight'},
     {id: '2', title: 'Jacket', price: 12000, description: 'Color green, puffy'},
@@ -30,35 +32,24 @@ const ProductList = () => {
     const onSendData = useCallback(async () => {
         tg.showAlert(queryId)
         const data = {
-            products: [ {id: '1', title: 'Jeans', price: 5000, description: 'Color blue, straight'},
-            {id: '2', title: 'Jacket', price: 12000, description: 'Color green, puffy'}],
-            totalPrice: 17000,
+            products: addedItems,
+            totalPrice: getTotalPrice(addedItems),
             queryId,
         };
     
-        await fetch('http://3.25.146.155:8000/web-data', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        .then(response => {
-            
-            if (!response.ok) {
-                tg.showAlert(`HTTP error! status: ${response.status}`);
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
+        try {
+            const response = await axios.post('http://3.25.146.155:8000/web-data', data, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+    
             tg.showAlert("Success");
-            console.log('Success:', data);
-        })
-        .catch(error => {
-            tg.showAlert(error);
+            console.log('Success:', response.data);
+        } catch (error) {
+            tg.showAlert(`Error: ${error.message}`);
             console.error('Error:', error);
-        });
+        }
     }, [addedItems, queryId]);
 
     useEffect(() => {
