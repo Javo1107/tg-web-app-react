@@ -55,7 +55,7 @@ const ProductList = () => {
             console.log('Success:', data);
         })
         .catch(error => {
-            tg.showAlert(error);
+            //tg.showAlert(error);
             console.error('Error:', error);
         });
     }, [addedItems, queryId]);
