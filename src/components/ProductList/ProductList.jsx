@@ -28,6 +28,7 @@ const ProductList = () => {
     console.log("in productlist");
 
     const onSendData = useCallback(() => {
+        tg.showAlert("Heyyyyy");
         const data = {
             products: addedItems,
             totalPrice: getTotalPrice(addedItems),
