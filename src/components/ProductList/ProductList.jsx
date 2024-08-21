@@ -45,7 +45,7 @@ const ProductList = () => {
         .then(response => {
             
             if (!response.ok) {
-                tg.showAlert(response.status);
+                tg.showAlert(`HTTP error! status: ${response.status}`);
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
