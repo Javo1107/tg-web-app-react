@@ -30,8 +30,9 @@ const ProductList = () => {
     const onSendData = useCallback(async () => {
         tg.showAlert(queryId)
         const data = {
-            products: addedItems,
-            totalPrice: getTotalPrice(addedItems),
+            products: [ {id: '1', title: 'Jeans', price: 5000, description: 'Color blue, straight'},
+            {id: '2', title: 'Jacket', price: 12000, description: 'Color green, puffy'}],
+            totalPrice: 17000,
             queryId,
         };
     
