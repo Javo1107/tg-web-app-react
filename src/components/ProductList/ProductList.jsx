@@ -38,9 +38,7 @@ const ProductList = () => {
         };
     
         try {
-            
-            const response = await axios.post('http://3.25.146.155:8000/web-data', data, {
-
+            const response = await axios.post('http://3.25.146.155:80/web-data', data, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
