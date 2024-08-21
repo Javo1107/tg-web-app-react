@@ -38,8 +38,9 @@ const ProductList = () => {
         };
     
         try {
-            tg.showAlert("In try")
+            
             const response = await axios.post('http://3.25.146.155:8000/web-data', data, {
+
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -48,7 +49,7 @@ const ProductList = () => {
             tg.showAlert("Success");
             console.log('Success:', response.data);
         } catch (error) {
-            //tg.showAlert(`Error: ${error.message}`);
+            tg.showAlert(`Error: ${error.message}`);
             console.error('Error:', error);
         }
     }, [addedItems, queryId]);
