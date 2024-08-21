@@ -45,17 +45,17 @@ const ProductList = () => {
         .then(response => {
             
             if (!response.ok) {
-                //tg.showAlert(`HTTP error! status: ${response.status}`);
+                tg.showAlert(`HTTP error! status: ${response.status}`);
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
         })
         .then(data => {
-            //tg.showAlert("Success");
+            tg.showAlert("Success");
             console.log('Success:', data);
         })
         .catch(error => {
-            //tg.showAlert(error);
+            tg.showAlert(error);
             console.error('Error:', error);
         });
     }, [addedItems, queryId]);
