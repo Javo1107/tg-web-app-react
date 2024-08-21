@@ -5,14 +5,14 @@ import {useTelegram} from "../../hooks/useTelegram";
 import {useCallback, useEffect} from "react";
 
 const products = [
-    {id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые'},
-    {id: '2', title: 'Куртка', price: 12000, description: 'Зеленого цвета, теплая'},
-    {id: '3', title: 'Джинсы 2', price: 5000, description: 'Синего цвета, прямые'},
-    {id: '4', title: 'Куртка 8', price: 122, description: 'Зеленого цвета, теплая'},
-    {id: '5', title: 'Джинсы 3', price: 5000, description: 'Синего цвета, прямые'},
-    {id: '6', title: 'Куртка 7', price: 600, description: 'Зеленого цвета, теплая'},
-    {id: '7', title: 'Джинсы 4', price: 5500, description: 'Синего цвета, прямые'},
-    {id: '8', title: 'Куртка 5', price: 12000, description: 'Зеленого цвета, теплая'},
+    {id: '1', title: 'Jeans', price: 5000, description: 'Color blue, straight'},
+    {id: '2', title: 'Jacket', price: 12000, description: 'Color green, puffy'},
+    {id: '3', title: 'Jeans 2', price: 5000, description: 'Color blue, skinny'},
+    {id: '4', title: 'Jacket 8', price: 122, description: 'Color green, puffy'},
+    {id: '5', title: 'Jeans 3', price: 5000, description: 'Color blue, skinny'},
+    {id: '6', title: 'Jacket 7', price: 600, description: 'Color green, puffy'},
+    {id: '7', title: 'Jeans 4', price: 5500, description: 'Color blue, skinny'},
+    {id: '8', title: 'Jacket 5', price: 12000, description: 'Color green, puffy'},
 ]
 
 const getTotalPrice = (items = []) => {
@@ -68,7 +68,7 @@ const ProductList = () => {
         } else {
             tg.MainButton.show();
             tg.MainButton.setParams({
-                text: `Купить ${getTotalPrice(newItems)}`
+                text: `Purchase ${getTotalPrice(newItems)}`
             })
         }
     }
