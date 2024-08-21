@@ -27,7 +27,7 @@ const ProductList = () => {
     
     console.log("in productlist");
 
-    const onSendData = useCallback(async() => {
+    const onSendData = useCallback(async () => {
         //tg.showAlert(queryId)
         const data = {
             products: addedItems,
@@ -35,7 +35,7 @@ const ProductList = () => {
             queryId,
         };
     
-        await fetch('http://3.25.146.155:8000/web-data', {
+        await fetch('https://3.25.146.155:8000/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
