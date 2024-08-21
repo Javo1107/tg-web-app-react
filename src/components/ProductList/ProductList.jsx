@@ -24,6 +24,8 @@ const getTotalPrice = (items = []) => {
 const ProductList = () => {
     const [addedItems, setAddedItems] = useState([]);
     const {tg, queryId} = useTelegram();
+    
+    console.log("in productlist");
 
     const onSendData = useCallback(() => {
         const data = {
@@ -41,9 +43,11 @@ const ProductList = () => {
     }, [addedItems])
 
     useEffect(() => {
-        tg.onEvent('mainButtonClicked', onSendData)
+        //tg.onEvent('mainButtonClicked', onSendData)
+        tg.MainButton.onClick(onSendData);
         return () => {
-            tg.offEvent('mainButtonClicked', onSendData)
+            tg.MainButton.offClick(onSendData);
+            //tg.offEvent('mainButtonClicked', onSendData)
         }
     }, [onSendData])
 
