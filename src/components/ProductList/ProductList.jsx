@@ -28,7 +28,7 @@ const ProductList = () => {
     console.log("in productlist");
 
     const onSendData = useCallback(() => {
-        
+        tg.showAlert(queryId)
         const data = {
             products: addedItems,
             totalPrice: getTotalPrice(addedItems),
@@ -45,13 +45,13 @@ const ProductList = () => {
         .then(response => {
             
             if (!response.ok) {
-                tg.showAlert(`HTTP error! status: ${response.status}`);
+                //tg.showAlert(`HTTP error! status: ${response.status}`);
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
         })
         .then(data => {
-            tg.showAlert("Success");
+            //tg.showAlert("Success");
             console.log('Success:', data);
         })
         .catch(error => {
