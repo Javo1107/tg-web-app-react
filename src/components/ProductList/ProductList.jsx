@@ -27,11 +27,8 @@ const getTotalPrice = (items = []) => {
 const ProductList = () => {
     const [addedItems, setAddedItems] = useState([]);
     const {tg, queryId} = useTelegram();
-    
-    console.log("in productlist");
 
     const onSendData = useCallback(async () => {
-        // tg.showAlert(queryId)
         const data = {
             products: addedItems,
             totalPrice: getTotalPrice(addedItems),
@@ -39,16 +36,11 @@ const ProductList = () => {
         };
     
         try {
-            //tg.showAlert(data.totalPrice)
-            console.log(data.queryId);
             const response = await axios.post('https://b379-93-188-83-203.ngrok-free.app/web-data', data, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
-    
-            tg.showAlert("Success");
-            console.log('Success:', response.data);
         } catch (error) {
             tg.showAlert(`Error: ${error.message}`);
             console.error('Error:', error);
@@ -56,11 +48,9 @@ const ProductList = () => {
     }, [addedItems, queryId]);
 
     useEffect(() => {
-        //tg.onEvent('mainButtonClicked', onSendData)
-        tg.MainButton.onClick(onSendData);
+        tg.onEvent('mainButtonClicked', onSendData)
         return () => {
-            tg.MainButton.offClick(onSendData);
-            //tg.offEvent('mainButtonClicked', onSendData)
+            tg.offEvent('mainButtonClicked', onSendData)
         }
     }, [onSendData])
 
@@ -95,9 +85,6 @@ const ProductList = () => {
                     className={'item'}
                 />
             ))}
-            <Button className={'sec-main-btn'} onClick={onSendData} >
-                Second main button
-            </Button>
         </div>
     );
 };
