@@ -38,7 +38,7 @@ const ProductList = () => {
         };
     
         try {
-            tg.showAlert(data.products)
+            tg.showAlert(data.totalPrice)
             const response = await axios.post('https://3.25.146.155:8000/web-data', data, {
                 headers: {
                     'Content-Type': 'application/json',
