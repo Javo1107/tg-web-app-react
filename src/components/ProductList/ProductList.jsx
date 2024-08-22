@@ -26,17 +26,18 @@ const getTotalPrice = (items = []) => {
 
 const ProductList = () => {
     const [addedItems, setAddedItems] = useState([]);
-    const {tg, queryId} = useTelegram();
+    const {tg, queryId, user} = useTelegram();
 
     const onSendData = useCallback(async () => {
         const data = {
             products: addedItems,
             totalPrice: getTotalPrice(addedItems),
             queryId,
+            chatId: user.id,
         };
     
         try {
-            const response = await axios.post('https://b379-93-188-83-203.ngrok-free.app/web-data', data, {
+            await axios.post('https://b379-93-188-83-203.ngrok-free.app/web-data', data, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
