@@ -30,7 +30,7 @@ const ProductList = () => {
     console.log("in productlist");
 
     const onSendData = useCallback(async () => {
-         tg.showAlert(queryId)
+         //tg.showAlert(queryId)
         const data = {
             products: addedItems,
             totalPrice: getTotalPrice(addedItems),
@@ -38,6 +38,7 @@ const ProductList = () => {
         };
     
         try {
+            tg.showAlert(data)
             const response = await axios.post('https://3.25.146.155:8000/web-data', data, {
                 headers: {
                     'Content-Type': 'application/json',
