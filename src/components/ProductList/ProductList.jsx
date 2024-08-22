@@ -5,6 +5,7 @@ import {useTelegram} from "../../hooks/useTelegram";
 import {useCallback, useEffect} from "react";
 
 import axios from 'axios';
+import Button from '../Button/Button';
 
 const products = [
     {id: '1', title: 'Jeans', price: 5000, description: 'Color blue, straight'},
@@ -30,7 +31,7 @@ const ProductList = () => {
     console.log("in productlist");
 
     const onSendData = useCallback(async () => {
-         //tg.showAlert(queryId)
+        // tg.showAlert(queryId)
         const data = {
             products: addedItems,
             totalPrice: getTotalPrice(addedItems),
@@ -39,7 +40,8 @@ const ProductList = () => {
     
         try {
             //tg.showAlert(data.totalPrice)
-            const response = await axios.post('https://3.25.146.155:8000/web-data', data, {
+            console.log(data.queryId);
+            const response = await axios.post('https://b379-93-188-83-203.ngrok-free.app/web-data', data, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -79,7 +81,7 @@ const ProductList = () => {
         } else {
             tg.MainButton.show();
             tg.MainButton.setParams({
-                text: `Purchase ${getTotalPrice(newItems)}`
+                text: `Total ${getTotalPrice(newItems)}`
             })
         }
     }
@@ -93,6 +95,9 @@ const ProductList = () => {
                     className={'item'}
                 />
             ))}
+            <Button className={'sec-main-btn'} onClick={onSendData} >
+                Second main button
+            </Button>
         </div>
     );
 };
